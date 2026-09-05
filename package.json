@@ -1,0 +1,26 @@
+﻿{
+  "name": "darjeeling-travelogue",
+  "version": "1.0.0",
+  "description": "Transform rough Darjeeling Toy Train journey notes and photos into evocative travelogues using on-device Gemma 4 AI.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "darjeeling",
+    "dhr",
+    "toy-train",
+    "gemma",
+    "on-device-ai",
+    "pwa",
+    "hackathon",
+    "gdg-siliguri"
+  ],
+  "author": "GDG Siliguri Hackathon Participant",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2"
+  }
+}

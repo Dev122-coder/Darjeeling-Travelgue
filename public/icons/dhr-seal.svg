@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="100%" height="100%">
+  <defs>
+    <linearGradient id="dhrGreenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1B3B2B"/>
+      <stop offset="100%" stop-color="#0E2419"/>
+    </linearGradient>
+    <radialGradient id="brassGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="70%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#AA820A"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Outer Ring with Brass Border -->
+  <circle cx="100" cy="100" r="95" fill="url(#dhrGreenGrad)" stroke="#D4AF37" stroke-width="4"/>
+  <circle cx="100" cy="100" r="87" fill="none" stroke="#C25E34" stroke-width="1.5" stroke-dasharray="3,3"/>
+
+  <!-- Kanchenjunga Mountains Silhouette -->
+  <path d="M 20,135 L 65,75 L 95,105 L 135,60 L 180,135 Z" fill="#2E5339" opacity="0.6"/>
+  <path d="M 50,135 L 85,88 L 110,112 L 148,72 L 175,135 Z" fill="#F0EDE4" opacity="0.85"/>
+
+  <!-- Railway Track & Ties -->
+  <line x1="30" y1="140" x2="170" y2="140" stroke="#D4AF37" stroke-width="3"/>
+  <line x1="30" y1="148" x2="170" y2="148" stroke="#D4AF37" stroke-width="3"/>
+  <line x1="45" y1="137" x2="45" y2="151" stroke="#D4AF37" stroke-width="2.5"/>
+  <line x1="65" y1="137" x2="65" y2="151" stroke="#D4AF37" stroke-width="2.5"/>
+  <line x1="85" y1="137" x2="85" y2="151" stroke="#D4AF37" stroke-width="2.5"/>
+  <line x1="105" y1="137" x2="105" y2="151" stroke="#D4AF37" stroke-width="2.5"/>
+  <line x1="125" y1="137" x2="125" y2="151" stroke="#D4AF37" stroke-width="2.5"/>
+  <line x1="145" y1="137" x2="145" y2="151" stroke="#D4AF37" stroke-width="2.5"/>
+
+  <!-- Steam Puffs -->
+  <circle cx="78" cy="88" r="7" fill="#FFFFFF" opacity="0.8"/>
+  <circle cx="70" cy="78" r="10" fill="#FFFFFF" opacity="0.75"/>
+  <circle cx="60" cy="68" r="13" fill="#FFFFFF" opacity="0.6"/>
+
+  <!-- DHR B-Class Steam Locomotive -->
+  <rect x="75" y="105" width="45" height="24" rx="2" fill="#F4EDE0"/>
+  <rect x="110" y="93" width="28" height="36" rx="2" fill="#F4EDE0"/>
+  <rect x="80" y="92" width="9" height="15" fill="#F4EDE0"/>
+  <rect x="68" y="108" width="8" height="10" fill="#D4AF37"/>
+  <polygon points="60,135 75,123 75,135" fill="#D4AF37"/>
+
+  <!-- Train Wheels -->
+  <circle cx="78" cy="132" r="7" fill="#D4AF37"/>
+  <circle cx="95" cy="132" r="7" fill="#D4AF37"/>
+  <circle cx="112" cy="132" r="7" fill="#D4AF37"/>
+  <circle cx="78" cy="132" r="3" fill="#1B3B2B"/>
+  <circle cx="95" cy="132" r="3" fill="#1B3B2B"/>
+  <circle cx="112" cy="132" r="3" fill="#1B3B2B"/>
+
+  <!-- Banner Arcs & Text -->
+  <path id="textArcTop" d="M 32,100 A 68,68 0 0,1 168,100" fill="none"/>
+  <text font-family="'Cinzel', 'Georgia', serif" font-size="11" font-weight="bold" fill="#D4AF37" letter-spacing="2">
+    <textPath href="#textArcTop" startOffset="50%" text-anchor="middle">
+      DARJEELING HIMALAYAN RAILWAY
+    </textPath>
+  </text>
+
+  <text x="100" y="172" font-family="'Outfit', sans-serif" font-size="9" font-weight="700" fill="#F0EDE4" text-anchor="middle" letter-spacing="1.5">
+    TOY TRAIN • ESTD 1881
+  </text>
+  <text x="100" y="184" font-family="'Outfit', sans-serif" font-size="7.5" fill="#D4AF37" text-anchor="middle" letter-spacing="1">
+    GHUM 2258M • WORLD HERITAGE
+  </text>
+</svg>

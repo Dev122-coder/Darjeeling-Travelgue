@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#1A3826">
+  <meta name="description" content="Darjeeling Travelogue: Turn your rough Toy Train journey notes and photographs into an evocative personal travel memory using on-device Gemma AI.">
+
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/icons/icon-192.png">
+
+  <title>Darjeeling Travelogue — Digital Heritage Memory Studio</title>
+
+  <!-- Google Fonts: Premium Editorial Travel Journal Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- Offline Status Ribbon -->
+  <aside id="offlineBanner" class="offline-banner hidden" role="status" aria-live="polite">
+    <div class="banner-inner">
+      <span class="banner-icon">📡</span>
+      <span><strong>Offline Mode Active:</strong> App shell is loaded from cache. Connect to local host to generate new stories.</span>
+    </div>
+  </aside>
+
+  <!-- Navigation / Header Bar -->
+  <header class="app-header">
+    <div class="container header-container">
+      <div class="brand-group">
+        <a href="/" class="brand-link" aria-label="Darjeeling Travelogue Home">
+          <div class="brand-icon-wrapper" aria-hidden="true">
+            <img src="/icons/dhr-seal.svg" alt="DHR Heritage Seal" class="dhr-brand-seal">
+          </div>
+          <div class="brand-text">
+            <span class="brand-title">DARJEELING TRAVELOGUE</span>
+            <span class="brand-subtitle">Toy Train Heritage Memory Studio</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Header Status & PWA Install -->
+      <div class="header-status-wrapper">
+        <div id="aiStatusPill" class="status-pill status-loading" title="Checking local Gemma AI availability">
+          <span class="status-dot"></span>
+          <span id="aiStatusText" class="status-label">Checking AI...</span>
+        </div>
+
+        <button id="pwaInstallBtn" class="btn btn-outline-light btn-sm pwa-btn hidden" aria-label="Install App as PWA">
+          <span>📲 Install App</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-backdrop-pattern" aria-hidden="true"></div>
+      <div class="container hero-container">
+        
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          <span>Darjeeling Himalayan Railway • UNESCO World Heritage Route</span>
+        </div>
+
+        <h1 class="hero-title">DARJEELING TRAVELOGUE</h1>
+        <p class="hero-subtitle">“Turn your journey into a memory.”</p>
+        <p class="hero-description">
+          Transform your travel notes and photographs into a personal story inspired by your journey through the hills. Powered by on-device Gemma AI.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#create-memory" class="btn btn-hero-cta">
+            <span>Create Your Travelogue</span>
+            <span class="cta-arrow" aria-hidden="true">↓</span>
+          </a>
+        </div>
+
+        <!-- Preset Journeys Bar -->
+        <div class="hero-presets-strip">
+          <span class="presets-caption">⚡ Try a curated journey:</span>
+          <div class="presets-buttons" role="group" aria-label="Sample Journey Presets">
+            <button type="button" class="preset-pill" data-preset="batasia">
+              <span class="preset-icon">🌀</span>
+              <span>Batasia Loop Sunrise</span>
+            </button>
+            <button type="button" class="preset-pill" data-preset="ghum">
+              <span class="preset-icon">🌧️</span>
+              <span>Ghum Station Whistle</span>
+            </button>
+            <button type="button" class="preset-pill" data-preset="teagarden">
+              <span class="preset-icon">🍵</span>
+              <span>Happy Valley Tea Mist</span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Travelogue Creation Section -->
+    <section id="create-memory" class="creation-section">
+      <div class="container form-container">
+
+        <div class="section-heading-block">
+          <span class="section-eyebrow">YOUR HIMALAYAN DISPATCH</span>
+          <h2 class="section-title">Create your travel memory</h2>
+          <p class="section-lead">Tell us about your journey, upload your route photos, and let Gemma craft an enduring narrative.</p>
+        </div>
+
+        <form id="travelogueForm" class="travelogue-form" novalidate>
+
+          <!-- Input Block: Passenger Notes -->
+          <div class="journal-card notes-card">
+            <div class="journal-card-header">
+              <div class="step-indicator">
+                <span class="step-number">01</span>
+              </div>
+              <div class="header-text-group">
+                <h3 class="journal-card-title">Tell us about your journey</h3>
+                <p class="journal-card-desc">Jot down rough memories: stations crossed, the mountain air, engine whistles, conversations, or tea garden vistas.</p>
+              </div>
+            </div>
+
+            <div class="textarea-wrapper">
+              <label for="travelNotes" class="visually-hidden">Your Travel Notes</label>
+              <textarea
+                id="travelNotes"
+                name="notes"
+                class="notes-textarea"
+                placeholder="e.g. Boarded at Kurseong at dawn. The Toy Train engine No. 788 B-Class coughed white steam into the crisp Himalayan air. Smelled wet cedar wood and boiling cardamom tea. Watched tea pluckers waving from the green slopes of Happy Valley as we curved toward Batasia Loop..."
+                rows="5"
+                maxlength="3000"
+                required
+              ></textarea>
+              
+              <div class="textarea-footer">
+                <span class="source-truth-hint">
+                  <span class="hint-bullet">✦</span>
+                  <span>Gemma uses your notes as the authentic ground truth for places & events.</span>
+                </span>
+                <span id="charCount" class="char-count">0 / 3000</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Input Block: Photo Upload -->
+          <div class="journal-card upload-card">
+            <div class="journal-card-header">
+              <div class="step-indicator">
+                <span class="step-number">02</span>
+              </div>
+              <div class="header-text-group">
+                <h3 class="journal-card-title">📸 Add your journey photos</h3>
+                <p class="journal-card-desc">Gemma's vision extracts scenery, colors, mist, trains, and architecture to enrich your travelogue.</p>
+              </div>
+            </div>
+
+            <!-- Drag & Drop Area -->
+            <div id="dropZone" class="upload-dropzone" tabindex="0" role="button" aria-label="Upload journey photos">
+              <input
+                type="file"
+                id="photoInput"
+                name="photos"
+                accept="image/jpeg,image/png,image/webp"
+                multiple
+                class="file-input-hidden"
+              >
+              <div class="dropzone-content">
+                <div class="dropzone-icon-box" aria-hidden="true">
+                  <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                    <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                    <polyline points="21 15 16 10 5 21"></polyline>
+                  </svg>
+                </div>
+                <h4 class="dropzone-primary-text">Drop your photos here or choose from your device</h4>
+                <p class="dropzone-sub-text">Click to browse your computer or mobile gallery</p>
+                <div class="dropzone-meta-pill">
+                  <span>Supports JPG, PNG, WebP • Client-side compression protects device RAM</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Photo Previews Grid (Reliably shows 1, 2, 3, 5+ images) -->
+            <div id="previewContainer" class="preview-container hidden" aria-live="polite">
+              <div class="preview-toolbar">
+                <div class="preview-count-wrapper">
+                  <span class="preview-count-icon">📷</span>
+                  <span id="previewCount" class="preview-count-label">0 photos selected</span>
+                </div>
+                <button type="button" id="clearAllPhotosBtn" class="btn-clear-all" title="Remove all selected photos">
+                  Remove All
+                </button>
+              </div>
+
+              <div id="previewGrid" class="preview-grid">
+                <!-- Dynamically populated with individual preview cards -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Generation CTA Bar -->
+          <div class="cta-action-bar">
+            <button type="submit" id="generateBtn" class="btn btn-primary btn-generate">
+              <span class="btn-icon">✨</span>
+              <span class="btn-text">Create My Travelogue</span>
+            </button>
+          </div>
+
+          <!-- Loading State Overlay -->
+          <div id="loadingIndicator" class="loading-state hidden" aria-live="assertive" role="alert">
+            <div class="loading-steam-chug">
+              <span class="steam-puff steam-puff-1">💨</span>
+              <span class="steam-puff steam-puff-2">💨</span>
+              <span class="steam-locomotive">🚂</span>
+            </div>
+            <h4 id="loadingStatusText" class="loading-title">🤖 Gemma is crafting your travel memory...</h4>
+            <p class="loading-desc">Analyzing your passenger notes and route photographs on-device</p>
+            <div class="loading-progress-track">
+              <div class="loading-progress-fill"></div>
+            </div>
+          </div>
+
+          <!-- Error Alert Banner -->
+          <div id="errorAlert" class="alert-box error-alert hidden" role="alert">
+            <div class="alert-icon-wrapper">⚠️</div>
+            <div class="alert-body">
+              <h4 id="errorTitle" class="alert-title">Notice</h4>
+              <p id="errorMessage" class="alert-message"></p>
+            </div>
+            <button type="button" id="dismissErrorBtn" class="alert-dismiss-btn" aria-label="Dismiss alert">&times;</button>
+          </div>
+
+        </form>
+
+      </div>
+    </section>
+
+    <!-- Result Memory Card Section -->
+    <section id="resultSection" class="result-section hidden" aria-live="polite">
+      <div class="container result-container">
+
+        <div class="result-header-bar">
+          <div class="result-title-group">
+            <span class="result-pill">HIMALAYAN SOUVENIR</span>
+            <h2 class="result-heading">Your Travel Memory</h2>
+          </div>
+          
+          <div class="result-actions-group">
+            <button id="copyStoryBtn" class="btn btn-outline btn-sm" title="Copy formatted story to clipboard">
+              <span>📋 Copy Story</span>
+            </button>
+            <button id="shareStoryBtn" class="btn btn-outline btn-sm" title="Share memory via Web Share">
+              <span>📤 Share</span>
+            </button>
+            <button id="downloadCardBtn" class="btn btn-primary btn-sm" title="Download high-resolution souvenir postcard PNG">
+              <span>💾 Download Card</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Souvenir Postcard Article -->
+        <article id="memoryPostcard" class="souvenir-postcard">
+
+          <!-- Postcard Vintage Header -->
+          <header class="postcard-top-header">
+            <div class="postcard-dhr-mark">
+              <span class="dhr-title">DARJEELING HIMALAYAN RAILWAY</span>
+              <span class="dhr-subtitle">Heritage Passenger Dispatch • UNESCO World Heritage Route</span>
+            </div>
+
+            <!-- Vintage Postmark Stamp -->
+            <div class="vintage-stamp">
+              <div class="stamp-inner">
+                <span class="stamp-line-top">DHR 1881</span>
+                <span class="stamp-line-loc">GHUM 2258M</span>
+                <span class="stamp-glyph">🚂</span>
+              </div>
+            </div>
+          </header>
+
+          <!-- Postcard Photo Frame & Carousel -->
+          <div id="postcardPhotoWrapper" class="postcard-photo-frame">
+            <div id="photoCarousel" class="photo-carousel">
+              <img id="postcardHeroImg" src="" alt="Travel memory photo" class="postcard-hero-img">
+            </div>
+            <div id="carouselDots" class="carousel-dots hidden" aria-label="Photo carousel navigation"></div>
+          </div>
+
+          <!-- Postcard Narrative Content -->
+          <div class="postcard-narrative">
+            <h3 id="resultTitle" class="postcard-story-title"></h3>
+
+            <div class="postcard-ornament-line">
+              <span class="ornament-diamond">◆</span>
+            </div>
+
+            <div id="resultTravelogue" class="postcard-story-body"></div>
+
+            <!-- Pull Quote Block -->
+            <blockquote class="postcard-pullquote">
+              <p id="resultCaption" class="quote-content"></p>
+            </blockquote>
+
+            <!-- Hashtags -->
+            <div id="resultHashtags" class="postcard-tag-bar"></div>
+
+            <!-- Postcard Details Footer -->
+            <footer class="postcard-meta-footer">
+              <div class="meta-date-box">
+                <span class="meta-label">DISPATCH DATE</span>
+                <time id="dispatchDate" class="meta-value"></time>
+              </div>
+              <div class="meta-auth-box">
+                <span class="meta-label">INTELLIGENCE</span>
+                <span class="meta-value">Gemma 4 • On-Device AI</span>
+              </div>
+            </footer>
+          </div>
+
+        </article>
+
+        <!-- New Story Button -->
+        <div class="create-another-wrapper">
+          <button id="createNewBtn" class="btn btn-outline btn-create-new">
+            <span>✨ Craft Another Journey Memory</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- App Footer -->
+  <footer class="app-footer">
+    <div class="container footer-container">
+      <div class="footer-brand-info">
+        <span class="footer-title">Darjeeling Travelogue</span>
+        <p class="footer-copy">In collaboration with the Darjeeling Himalayan Railway • GDG Siliguri: Toy Train Edition</p>
+      </div>
+      <div class="footer-badge-box">
+        <span class="footer-badge">🌿 Zero Cloud AI Dependency • Runs Locally</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div id="toastNotification" class="toast hidden" role="status" aria-live="polite">
+    <span id="toastMessage"></span>
+  </div>
+
+  <!-- Application Scripts -->
+  <script src="/js/image-utils.js"></script>
+  <script src="/js/ai-service.js"></script>
+  <script src="/js/postcard-export.js"></script>
+  <script src="/js/script.js"></script>
+
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then((reg) => console.log('[PWA] Service Worker registered:', reg.scope))
+          .catch((err) => console.warn('[PWA] Registration failed:', err));
+      });
+    }
+  </script>
+</body>
+</html>

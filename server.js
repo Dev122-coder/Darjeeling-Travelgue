@@ -67,40 +67,45 @@ app.get('/api/health', async (req, res) => {
  * Prompt Builder
  * Conforms strictly to the hackathon specification
  */
-function buildTraveloguePrompt(notes) {
-  return `You are a creative travel writer specializing in Darjeeling and Himalayan railway journeys.
+function buildTraveloguePrompt(notes, imageCount = 0) {
+  const photoContext = imageCount > 1
+    ? `You are provided with ${imageCount} journey photos. Look at the entire collection together—noticing the Toy Train, mountain scenery, mist, stations, tea gardens, architecture, or people across all photos, and weave these visible elements naturally into one cohesive memory.`
+    : (imageCount === 1 
+      ? `You are provided with a journey photo. Notice the visible scenery, atmosphere, colors, landscapes, train, or architecture.` 
+      : ``);
 
-Create a beautiful, personal travel memory from the traveler's notes and uploaded photo.
+  return `You are a creative travel writer specializing in Darjeeling and the Himalayan Toy Train.
+
+Create a personal, evocative travel memory from the traveler's authentic notes and the uploaded photos.
+
+${photoContext}
 
 Write:
-1. A short poetic title
-2. A 100-150 word travelogue
+1. A short, beautiful travel-journal title
+2. A 100-150 word personal travel story
 3. A one-line memorable caption
 4. 3-5 relevant hashtags
 
-Use the photo to notice scenery, atmosphere, colors, landscapes, trains, architecture, people, or other visible details.
-
-Use the traveler's notes as the source of truth for places and events.
-
-Do not invent specific facts that are not provided or visible.
-
-Make the writing warm, vivid, emotional, natural and personal.
-
-Make it feel like a real passenger's memory.
+WRITING STYLE & GUIDELINES:
+- Personal, warm, vivid, emotional, natural, elegant, and grounded.
+- Deeply connected to the Darjeeling and Himalayan Toy Train journey: mountain mist, sharp whistle echoes, emerald tea garden terraces, pine slopes, wooden carriages, cold mountain air, and glimpses of Kanchenjunga.
+- Use the traveler's notes as the primary source of truth for places, events, and personal experiences.
+- Do NOT invent specific locations, landmarks, events, or historical facts that are not provided in the notes or visibly discernible in the photos.
+- Avoid robotic AI phrases, travel clichés, and repetitive adjectives. Make it sound like an authentic personal travel journal entry.
 
 Format exactly like:
 
 TITLE:
-[title]
+[Short beautiful travel-journal title]
 
 TRAVELOGUE:
-[travelogue]
+[100–150 word personal travel story]
 
 CAPTION:
-[caption]
+[One memorable sentence]
 
 HASHTAGS:
-[hashtags]
+[3–5 relevant hashtags]
 
 Travel notes:
 ${notes}`;
@@ -128,11 +133,10 @@ async function handleGeneration(req, res) {
       });
     }
 
-    // 2. Prepare and clean Base64 images for Ollama
+    // 2. Prepare and clean Base64 images for Ollama (Support all selected images up to 5)
     const cleanedImages = [];
     if (Array.isArray(images) && images.length > 0) {
-      // Limit to 3 images to conserve RAM on 8GB machine
-      const limitedImages = images.slice(0, 3);
+      const limitedImages = images.slice(0, 5);
       for (const img of limitedImages) {
         if (typeof img === 'string') {
           // Strip data:image/...;base64, prefix if present
@@ -147,7 +151,7 @@ async function handleGeneration(req, res) {
     console.log(`[Travelogue] Generating memory for note length ${notes.length}, images: ${cleanedImages.length}`);
 
     // 3. Build Prompt & Ollama payload
-    const userPrompt = buildTraveloguePrompt(notes.trim());
+    const userPrompt = buildTraveloguePrompt(notes.trim(), cleanedImages.length);
 
     const messagePayload = {
       role: 'user',

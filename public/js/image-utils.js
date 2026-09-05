@@ -19,16 +19,20 @@ const ImageUtils = {
   validateFile(file) {
     if (!file) return { valid: false, error: 'No file provided' };
     
-    // Check file type
-    const validTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/heic', 'image/heif'];
-    if (!validTypes.includes(file.type.toLowerCase()) && !file.type.startsWith('image/')) {
+    const validTypes = ['image/jpeg', 'image/png', 'image/webp', 'image/heic', 'image/heif', 'image/bmp'];
+    const name = (file.name || '').toLowerCase();
+    const validExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.heic', '.heif', '.bmp'];
+    const hasValidExt = validExtensions.some(ext => name.endsWith(ext));
+    const hasValidMime = (file.type && file.type.startsWith('image/')) || validTypes.includes((file.type || '').toLowerCase());
+
+    if (!hasValidMime && !hasValidExt) {
       return { 
         valid: false, 
         error: `"${file.name}" is not a supported image format. Please use JPEG, PNG, or WebP.` 
       };
     }
 
-    // Check size
+    // Check size (15MB limit)
     if (file.size > this.MAX_FILE_SIZE_BYTES) {
       return { 
         valid: false, 

@@ -202,7 +202,8 @@ const PostcardExporter = {
         };
 
         // Load image onto canvas
-        if (cardData.imageDataUrl) {
+        const targetImgUrl = cardData.imageDataUrl || (cardData.allPhotos && cardData.allPhotos.length > 0 ? (cardData.allPhotos[0].dataUrl || cardData.allPhotos[0].previewUrl) : '/assets/batasia-loop.jpg');
+        if (targetImgUrl) {
           const img = new Image();
           img.onload = () => {
             // Draw photo frame background

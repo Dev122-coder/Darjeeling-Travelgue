@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#1A3826">
-  <meta name="description" content="Darjeeling Travelogue: Turn your rough Toy Train journey notes and photographs into an evocative personal travel memory using on-device Gemma AI.">
+  <meta name="description" content="Darjeeling Travelogue: Turn your Toy Train journey into a memory worth keeping with on-device AI.">
 
   <!-- PWA Manifest -->
   <link rel="manifest" href="/manifest.json">
@@ -12,7 +12,7 @@
 
   <title>Darjeeling Travelogue — Digital Heritage Memory Studio</title>
 
-  <!-- Google Fonts: Premium Editorial Travel Journal Typography -->
+  <!-- Google Fonts: Editorial Travel Journal Typography -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -38,7 +38,7 @@
             <img src="/icons/dhr-seal.svg" alt="DHR Heritage Seal" class="dhr-brand-seal">
           </div>
           <div class="brand-text">
-            <span class="brand-title">DARJEELING TRAVELOGUE</span>
+            <span class="brand-title">Darjeeling Travelogue</span>
             <span class="brand-subtitle">Toy Train Heritage Memory Studio</span>
           </div>
         </a>
@@ -68,13 +68,13 @@
         
         <div class="hero-badge">
           <span class="badge-dot"></span>
-          <span>Darjeeling Himalayan Railway • UNESCO World Heritage Route</span>
+          <span>Powered by on-device AI</span>
         </div>
 
-        <h1 class="hero-title">DARJEELING TRAVELOGUE</h1>
-        <p class="hero-subtitle">“Turn your journey into a memory.”</p>
+        <h1 class="hero-title">Darjeeling Travelogue</h1>
+        <p class="hero-subtitle">“Turn your Toy Train journey into a memory worth keeping.”</p>
         <p class="hero-description">
-          Transform your travel notes and photographs into a personal story inspired by your journey through the hills. Powered by on-device Gemma AI.
+          Transform your travel notes and photographs into a personal story inspired by your journey through the hills.
         </p>
 
         <div class="hero-cta-group">
@@ -111,7 +111,7 @@
       <div class="container form-container">
 
         <div class="section-heading-block">
-          <span class="section-eyebrow">YOUR HIMALAYAN DISPATCH</span>
+          <span class="section-eyebrow">HIMALAYAN TRAVEL JOURNAL</span>
           <h2 class="section-title">Create your travel memory</h2>
           <p class="section-lead">Tell us about your journey, upload your route photos, and let Gemma craft an enduring narrative.</p>
         </div>
@@ -126,7 +126,7 @@
               </div>
               <div class="header-text-group">
                 <h3 class="journal-card-title">Tell us about your journey</h3>
-                <p class="journal-card-desc">Jot down rough memories: stations crossed, the mountain air, engine whistles, conversations, or tea garden vistas.</p>
+                <p class="journal-card-desc">Describe the places, moments, people and little details you want to remember.</p>
               </div>
             </div>
 
@@ -136,7 +136,7 @@
                 id="travelNotes"
                 name="notes"
                 class="notes-textarea"
-                placeholder="e.g. Boarded at Kurseong at dawn. The Toy Train engine No. 788 B-Class coughed white steam into the crisp Himalayan air. Smelled wet cedar wood and boiling cardamom tea. Watched tea pluckers waving from the green slopes of Happy Valley as we curved toward Batasia Loop..."
+                placeholder="Today I boarded the Toy Train at Ghoom..."
                 rows="5"
                 maxlength="3000"
                 required
@@ -159,8 +159,8 @@
                 <span class="step-number">02</span>
               </div>
               <div class="header-text-group">
-                <h3 class="journal-card-title">📸 Add your journey photos</h3>
-                <p class="journal-card-desc">Gemma's vision extracts scenery, colors, mist, trains, and architecture to enrich your travelogue.</p>
+                <h3 class="journal-card-title">Add your journey photos</h3>
+                <p class="journal-card-desc">Gemma observes scenery, colors, mist, and trains across all photos to weave your memory.</p>
               </div>
             </div>
 
@@ -170,7 +170,7 @@
                 type="file"
                 id="photoInput"
                 name="photos"
-                accept="image/jpeg,image/png,image/webp"
+                accept="image/jpeg,image/png,image/webp,image/*"
                 multiple
                 class="file-input-hidden"
               >
@@ -182,10 +182,10 @@
                     <polyline points="21 15 16 10 5 21"></polyline>
                   </svg>
                 </div>
-                <h4 class="dropzone-primary-text">Drop your photos here or choose from your device</h4>
-                <p class="dropzone-sub-text">Click to browse your computer or mobile gallery</p>
+                <h4 class="dropzone-primary-text">Drop photos here or browse from your device</h4>
+                <p class="dropzone-sub-text">Click to select multiple journey photographs (JPG, PNG, WebP)</p>
                 <div class="dropzone-meta-pill">
-                  <span>Supports JPG, PNG, WebP • Client-side compression protects device RAM</span>
+                  <span>Supports multiple photos • Resized in browser to preserve laptop RAM</span>
                 </div>
               </div>
             </div>
@@ -223,8 +223,8 @@
               <span class="steam-puff steam-puff-2">💨</span>
               <span class="steam-locomotive">🚂</span>
             </div>
-            <h4 id="loadingStatusText" class="loading-title">🤖 Gemma is crafting your travel memory...</h4>
-            <p class="loading-desc">Analyzing your passenger notes and route photographs on-device</p>
+            <h4 id="loadingStatusText" class="loading-title">Creating your travel memory...</h4>
+            <p class="loading-desc">Gemma is analyzing your notes & photographs to craft your personal travelogue</p>
             <div class="loading-progress-track">
               <div class="loading-progress-fill"></div>
             </div>
@@ -288,12 +288,15 @@
             </div>
           </header>
 
-          <!-- Postcard Photo Frame & Carousel -->
+          <!-- Postcard Photo Frame: Dynamic Responsive Gallery for ALL Uploaded Photos -->
           <div id="postcardPhotoWrapper" class="postcard-photo-frame">
-            <div id="photoCarousel" class="photo-carousel">
-              <img id="postcardHeroImg" src="" alt="Travel memory photo" class="postcard-hero-img">
+            <div id="resultPhotoGallery" class="result-photo-gallery gallery-layout-1">
+              <!-- Dynamically populated with ALL uploaded photos -->
+              <div class="gallery-item single-hero">
+                <img id="postcardHeroImg" src="/assets/batasia-loop.jpg" alt="Travel memory photo" class="gallery-img">
+              </div>
             </div>
-            <div id="carouselDots" class="carousel-dots hidden" aria-label="Photo carousel navigation"></div>
+            <div id="galleryMetaBadge" class="gallery-meta-badge hidden"></div>
           </div>
 
           <!-- Postcard Narrative Content -->
